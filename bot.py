@@ -27,7 +27,8 @@ async def copy_messages():
         await client.connect()
         if not await client.is_user_authorized():
             await client.send_code_request(phone_number)
-            await client.sign_in(phone_number, input('Введите код подтверждения: '))
+            password = input('Введите пароль: ')
+            await client.sign_in(phone_number, password=password)
 
         source_channel = await client.get_entity(source_channel_id)
         destination_channel = await client.get_entity(destination_channel_id)
